@@ -1,0 +1,67 @@
+#h1{
+	font-family: century gothic;
+	font-size: 30px;
+	color:#2FCA5E;
+	margin: 10px;
+	padding: 5px;
+	text-align: center;
+}
+
+#loginMsg {
+	border-radius: 2px;
+	color: brown;
+	font-family: century gothic;
+	font-size: 12px;
+	padding: 2px 5px;
+	width: 50%;
+	margin:2px;
+	text-align: center;
+	background: antiquewhite;
+	border: 1px solid #CA4646;
+}
+
+.loginBox {
+	background: #eee;
+	color: #2FCA5E;
+	width: 20%;
+	padding: 15px;
+    border: 2px solid #DEDEDE;
+    border-radius: 2px;
+}
+.loginBox input{
+	box-align: center;
+	border-left: 3px solid #2FCA5E;
+	border-right: 1px solid #eee;
+	border-top: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	width: 90%;
+	margin:2px;
+	background: transparent;
+}
+
+.loginBox input:hover, .loginBox input:active, .loginBox input:focus{
+	border-left: 5px solid #32B158;
+	border-right: 1px solid #32B158;
+	border-top: 1px solid #32B158;
+	border-bottom: 1px solid #32B158;
+	color: #32B158;
+}
+
+input{
+	font-size:15px;
+	padding: 5px;
+	font-family: century gothic;
+	color: #464646;
+}
+
+#button{
+	font-family: century gothic;
+	color: #2FCA5E;
+	border: 2px solid #2FCA5E;
+	background: transparent;
+	background-color: white;
+}
+
+#button:hover, #button:active, #button:focus{
+	text-transform: uppercase;
+}

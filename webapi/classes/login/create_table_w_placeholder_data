@@ -1,0 +1,29 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `login`
+--
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usrLogin`
+--
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `usrLogin` (
+  `id` int(3) NOT NULL AUTO_INCREMENT,
+  `email` varchar(20) NOT NULL check (email LIKE '%@%.%' AND email NOT LIKE '@%' AND email NOT LIKE '%@%@%'),
+  `user` varchar(20) NOT NULL,
+  `pass` varchar(50) NOT NULL,
+  `type` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `usrLogin`
+--
+-- --------------------------------------------------------
+
+INSERT INTO `usrLogin` (`id`, `email`, `user`, `pass`, `type`) VALUES
+(1, 'karanrjhaveri@yahoo.com', 'karanrjhaveri', ' batman123', ' admin');
