@@ -1,63 +1,30 @@
 <?php
+if (PHP_SAPI == 'cli-server') {
+    // To help the built-in PHP dev server, check if the request was actually for
+    // something which should probably be served as a static file
+    $url  = parse_url($_SERVER['REQUEST_URI']);
+    $file = __DIR__ . $url['path'];
+    if (is_file($file)) {
+        return false;
+    }
+}
 
+require __DIR__ . '/../vendor/autoload.php';
+
+session_start();
+
+// Instantiate the app
+$settings = require __DIR__ . '/../src/settings.php';
+$app = new \Slim\App($settings);
+
+// Set up dependencies
 require __DIR__ . '/../src/dependencies.php';
 
-/*
-    URL to test the API
-*/
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
+// Register middleware
+require __DIR__ . '/../src/middleware.php';
 
-    return $response;
-});
-/*
-    Main URL
-*/
-$app->get('/', function (Request $request, Response $response, array $args) {
-    $response->getBody()->write("Hello");
-
-    return $response;
-});
-/*
-$app->get('/something', function () use ($app) {
-    $dataArray = ['1','2'];// Some data array
-    
-    $response = $app->response();
-    $response['Content-Type'] = 'application/json';
-    $response['X-Powered-By'] = 'Potato Energy';
-    $response->status(200);
-    $response->body(json_encode($dataArray));
-
-    return $response;
-
-});
-*/
-$app->get('/login', function (Request $request, Response $response, array $args) {
-    $body = require __DIR__ . '/../classes/login/index.php';
-    $response->getBody()->write($body);
-
-    return $response;
-});
-
-// $app->post('/login', function (Request $request, Response $response, array $args) {
-//     $user = ($POST['user']);
-//     $input = $request->getParsedBody();
-//     $sql = $this->db->prepare("SELECT * FROM $USERS_TABLE WHERE user='".$user."'");
-//     $result = $sql->execute();
-
-//     $rowCount = $result->numRows;
-//     if ($rowRount>0){
-//       return $this->response->withJson(array("ok"=>"authorized access"));
-
-//     }else{
-//       return $this->response->withJson(array("error"=>"declined access"));
-
-//     }
-//     });
-// -----------------------------------------------
-
-
+// Register routes
+require __DIR__ . '/../src/routes.php';
 
 // Run app
 $app->run();
